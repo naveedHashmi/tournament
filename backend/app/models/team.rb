@@ -1,8 +1,8 @@
 class Team < ApplicationRecord
-  belongs_to :captain, class_name: 'Player', foreign_key: 'captain_id'
+  belongs_to :captain, class_name: 'Player', foreign_key: 'captain_id', optional: true
 
   has_many :players
 
   validates :name, presence: true
-  validates :captain_id, presence: true, numericality: true
+  validates :captain_id, allow_nil: true, numericality: true
 end
