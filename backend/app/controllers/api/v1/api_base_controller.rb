@@ -1,4 +1,4 @@
-class Api::ApiBaseController < ApplicationController
+class Api::V1::ApiBaseController < ApplicationController
   include ApiErrorHandler
 
   skip_before_action :verify_authenticity_token

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::TeamsController, type: :controller do
+RSpec.describe Api::V1::TeamsController, type: :controller do
   describe 'GET #index' do
     it 'returns a JSON response with teams and their captains' do
       team = create(:team, name: 'Test Team')

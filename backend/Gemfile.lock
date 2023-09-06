@@ -251,7 +251,6 @@ DEPENDENCIES
   rails (~> 6.0.3)
   route_mechanic
   rspec-rails (~> 5.0.0)
-  rspec-support (~> 3.4, >= 3.4.1)
   selenium-webdriver
   shoulda-matchers
   spring
