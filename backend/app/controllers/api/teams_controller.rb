@@ -7,14 +7,18 @@ class Api::TeamsController < ApplicationController
     render json: teams, include: %w[captain], status: :ok
   end
 
+  def show
+    render json: Team.includes(:captain, :players).find(params[:id]), include: %w[captain players], status: :ok
+  end
+
   def create
     ActiveRecord::Base.transaction do
-      team = Team.new(team_params)
+      team = Team.new(team_params.merge(gif_url: GiphyService.get_gif(team_params['name'])))
 
-      if team.save
+      if team.save!
         captain = Player.new(captain_params.merge(team: team))
 
-        if captain.save
+        if captain.save!
           team.update(captain_id: captain.id)
 
           render json: team, include: %w[captain], status: :created
@@ -31,10 +35,10 @@ class Api::TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:data).require(:team).permit(:name)
   end
 
   def captain_params
-    params.require(:captain).permit(:fname, :lname)
+    params.require(:data).require(:captain).permit(:fname, :lname)
   end
 end
