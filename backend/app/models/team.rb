@@ -3,6 +3,6 @@ class Team < ApplicationRecord
 
   has_many :players
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :captain_id, allow_nil: true, numericality: true
 end

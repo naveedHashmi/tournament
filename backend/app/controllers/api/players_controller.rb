@@ -20,6 +20,6 @@ class Api::PlayersController < ApplicationController
   private
 
   def player_params
-    params.require(:player).permit(:fname, :lname, :team_id)
+    params.require(:data).require(:player).permit(:fname, :lname, :team_id)
   end
 end
