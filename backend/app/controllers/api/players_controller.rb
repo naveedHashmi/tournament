@@ -1,6 +1,4 @@
-class Api::PlayersController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
+class Api::PlayersController < Api::ApiBaseController
   def index
     players = Player.includes(:team).all
 
